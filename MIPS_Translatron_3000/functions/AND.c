@@ -60,6 +60,11 @@ void and_reg_assm(void) {
 		Putting the binary together
 	*/
 
+	/*
+		MODIFIED:
+		Rd, Rs, Rt bits were shuffled around and set to the incorrect values
+	*/
+
 	// Set the opcode
 	setBits_num(31, 0, 6);
 
@@ -67,10 +72,10 @@ void and_reg_assm(void) {
 	setBits_str(5, "100100");
 
 	// set Rd
-	setBits_num(25, PARAM1.value, 5);
+	setBits_num(15, PARAM1.value, 5);
 
 	// set Rs
-	setBits_num(15, PARAM2.value, 5);
+	setBits_num(25, PARAM2.value, 5);
 
 	// set Rt
 	setBits_num(20, PARAM3.value, 5);
@@ -101,7 +106,7 @@ void and_reg_bin(void) {
 
 
 	/*
-		Setting Instuciton values
+		Setting Instruction values
 	*/
 
 	setOp("AND");
