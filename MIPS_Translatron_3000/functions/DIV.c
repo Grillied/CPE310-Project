@@ -13,19 +13,33 @@ void div_reg_assm(void) {
 		return;
 	}
 
-	// check par
+	/*
+		Checking the type of parameters
+	*/
+
+	// The first parameter should be a register
 	if (PARAM1.type != REGISTER) {
 		state = MISSING_REG;
 		return;
 	}
+
+	// The second parameter should also be a register
 	if (PARAM2.type != REGISTER) {
 		state = MISSING_REG;
 		return;
 	}
+
+	/*
+		Checking the value of parameters
+	*/
+
+	// Rt should be 31 or less
 	if (PARAM1.value > 31) {
 		state = INVALID_REG;
 		return;
 	}
+
+	// Rs should be 31 or less
 	if (PARAM2.value > 31) {
 		state = INVALID_REG;
 		return;
