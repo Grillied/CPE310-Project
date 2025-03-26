@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "instruction.h": "c",
+        "mips_instruction.h": "c"
+    }
+}
