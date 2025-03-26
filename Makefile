@@ -1,3 +1,6 @@
+# Created by: Evan Anderson
+# MakeFile for easier compilation of project
+
 cc = gcc
 
 
