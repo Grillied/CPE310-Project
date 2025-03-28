@@ -1,6 +1,6 @@
 /*
-* Author: Cameron Hannay
-* Date: 03/27/2025 
+* Author: Ol' Jim
+* Date: 06/13/2012 
 * ByteForge Systems
 * MIPS-Translatron 3000
 */

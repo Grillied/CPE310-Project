@@ -1,8 +1,16 @@
 /*
-* Author: Cameron Hannay
-* Date: 03/26/2025 
+* Author: Ol' Jim
+* Date: 06/13/2012
 * ByteForge Systems
 * MIPS-Translatron 3000
+*/
+
+/*
+* Cameron's Fixes:
+* 1. 
+* 2. 
+* 3. 
+* 4. Improvded comments for better clarity
 */
 
 #include "../include/Instruction.h"

@@ -5,6 +5,14 @@
 * MIPS-Translatron 3000
 */
 
+/*
+* Cameron's Fixes:
+* 1. Fix incorrect field assignements in encoding (Rd and Rt were wrong)
+* 2. Ensure correct opcode encoding ("000000" is the opcode)
+* 3. Fixed decoding field extraction (Rd, Rs, and Rt were extracted incorrectly)
+* 4. Improvded comments for better clarity
+*/
+
 #include "../include/Instruction.h"
 
 void slt_reg_assm(void) {
@@ -65,19 +73,19 @@ void slt_reg_assm(void) {
 	*/
 
 	// Set the opcode
-	setBits_num(31, 0, 6);
+	setBits_str(31, "000000"); // changed to setBits_str(31, "000000") to get correct opcode
 
 	// Set the funct 
 	setBits_str(5, "101010");
 
 	// set Rd
-	setBits_num(20, PARAM1.value, 5);
+	setBits_num(15, PARAM1.value, 5); // changed from 20 to 15
 
 	// set Rs
 	setBits_num(25, PARAM2.value, 5);
 
 	// set Rt
-	setBits_num(15, PARAM3.value, 5);
+	setBits_num(20, PARAM3.value, 5); // changed from 15 to 20
 
 	// tell the system the encoding is done
 	state = COMPLETE_ENCODE;
@@ -86,7 +94,7 @@ void slt_reg_assm(void) {
 void slt_reg_bin(void) {
 	// Check if the op code bits match
 	// check_bits(start_bit, bit_string) returns 0 if the bit_string matches
-	//  any x will be skipped
+	// Any x will be skipped
 	// If the manual shows (0), then the value of that bit doesnt matter
 	if (checkBits(31, "000000") != 0 || checkBits(5, "101010") != 0) {
 		state = WRONG_COMMAND;
@@ -99,22 +107,22 @@ void slt_reg_bin(void) {
 		Finding values in the binary
 	*/
 	// getBits(start_bit, width)
-	uint32_t Rd = getBits(15, 5);
+	uint32_t Rd = getBits(15, 5); // changed start_bit from 
 	uint32_t Rs = getBits(25, 5);
-	uint32_t Rt = getBits(20, 5);
+	uint32_t Rt = getBits(20, 5); // changed start_bit from 
 
 	/*
 		Setting Instuciton values
 	*/
 
 	setOp("SLT");
-	//setCond_num(cond);
-	//setParam(param_num, param_type, param_value)
-	setParam(1, REGISTER, Rd); //destination
-	setParam(2, REGISTER, Rs); //first source register operand
-	setParam(3, REGISTER, Rt); //second source register operand
+	// setCond_num(cond);
+	// setParam(param_num, param_type, param_value)
+	setParam(1, REGISTER, Rd); // destination
+	setParam(2, REGISTER, Rs); // first source register operand
+	setParam(3, REGISTER, Rt); // second source register operand
 
-	// tell the system the decoding is done
+	// Tell the system the decoding is done
 	state = COMPLETE_DECODE;
 }
 
