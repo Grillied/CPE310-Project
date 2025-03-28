@@ -9,8 +9,7 @@
 * Cameron's Fixes:
 * 1. Fix incorrect field assignements in encoding (Rd and Rt were wrong)
 * 2. Ensure correct opcode encoding ("000000" is the opcode)
-* 3. Fixed decoding field extraction (Rd, Rs, and Rt were extracted incorrectly)
-* 4. Improvded comments for better clarity
+* 3. Improvded comments for better clarity
 */
 
 #include "../include/Instruction.h"
@@ -125,5 +124,3 @@ void slt_reg_bin(void) {
 	// Tell the system the decoding is done
 	state = COMPLETE_DECODE;
 }
-
-
