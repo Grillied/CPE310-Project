@@ -7,10 +7,9 @@
 
 /*
 * Cameron's Fixes:
-* 1. Corrected parameter order in encoding (Rs and Rt were swapped)
-* 2. Adjusted immediate value range check to if it is greater than 0xFFFF, not 0x7FFF
-* 3. Fixed decoding to correctly assign Rs as base register and Rt as destination register
-* 4. Improvded comments for better clarity
+* 1. Adjusted immediate value range check to if it is greater than 0xFFFF, not 0x7FFF
+* 2. Fixed decoding to correctly assign Rs as base register and Rt as destination register
+* 3. Improvded comments for better clarity
 */
 
 #include "../include/Instruction.h"
