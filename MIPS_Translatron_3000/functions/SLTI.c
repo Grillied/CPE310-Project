@@ -67,7 +67,7 @@ void slti_immd_assm(void) {
 	*/
 
 	// Set the opccode
-	setbits_str(31, "001010");
+	setBits_str(31, "001010");
 
 	// Set Rt
 	setBits_num(20, PARAM1.value, 5);
