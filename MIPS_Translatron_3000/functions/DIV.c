@@ -7,10 +7,9 @@
 
 /*
 * Cameron's Fixes:
-* 1. 
-* 2. 
-* 3. 
-* 4. Improvded comments for better clarity
+* 1. Fixed register order in assembly (wrong bit positions for Rs and Rt)
+* 2. Corrected decoding (positions of Rs and Rt were swapped)
+* 3. Improved comments for better clarity
 */
 
 #include "../include/Instruction.h"
@@ -62,10 +61,10 @@ void div_reg_assm(void) {
 	setBits_str(31, "000000");
 
 	// Set Rs
-	setBits_num(25, PARAM1.value, 5); 
+	setBits_num(25, PARAM1.value, 5); // changed from 20 to 25
 
 	// Set Rt
-	setBits_num(20, PARAM2.value, 5); 
+	setBits_num(20, PARAM2.value, 5); // changed from 25 to 20
 
 	setBits_str(5, "011010");
 
@@ -100,12 +99,12 @@ void div_reg_bin(void) {
 	
 	setOp("DIV");
 
-	// Corrected order so that Rs is first
-	setParam(1, REGISTER, Rs); // dividend
-	setParam(2, REGISTER, Rt); // divisor
+	// Dividend
+	setParam(1, REGISTER, Rs); // corrected position so that Rs is first
+	
+	// Divisor
+	setParam(2, REGISTER, Rt); // corrected position so that Rt is second
 
 	// Tell the system the decoding is done
 	state = COMPLETE_DECODE;
 }
-
-
