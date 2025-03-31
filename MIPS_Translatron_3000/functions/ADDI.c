@@ -104,7 +104,7 @@ void addi_immd_bin(void) {
 
 
 	/*
-		Setting Instuciton values
+		Setting Instuction values
 	*/
 
 	setOp("ADDI");

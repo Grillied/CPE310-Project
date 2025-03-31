@@ -5,6 +5,12 @@
 * MIPS-Translatron 3000
 */
 
+/*
+* Evan's Fixes:
+* 1. Organized code for better readability
+* 2. Removed redundant code and comments
+*/
+
 
 #include "../include/Instruction.h"
 
@@ -103,7 +109,7 @@ void beq_immd_bin(void) {
 	uint32_t offset = getBits(15, 16);
 
 	/*
-		Setting Instuciton values
+		Setting Instruction values
 	*/
 
 	setOp("BEQ");
