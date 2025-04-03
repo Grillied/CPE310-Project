@@ -1,0 +1,61 @@
+# Basic Arithmetic
+ADD $t0, $t1, $t2
+ADDI $t3, $t4, #32767
+SUB $t5, $t6, $t7
+
+# Memory Instructions
+LW $t0, #100($t1)
+SW $t2, #-100($t3)
+LUI $t4, #0xABCD
+
+# Multiply and Divide
+MULT $t5, $t6
+DIV $t7, $t8
+MFLO $t9
+MFHI $s0
+
+# Comparison
+SLT $s1, $s2, $s3
+SLTI $s4, $s5, #-32768
+
+# Logical Ops
+AND $s6, $s7, $t0
+ANDI $t1, $t2, #0xFFFF
+OR $t3, $t4, $t5
+ORI $t6, $t7, #0x1234
+
+# Branching
+BEQ $t8, $t9, label
+BNE $s0, $s1, label
+
+# Edge Case: Immediate Limits
+ADDI $t0, $t1, #-32768
+ADDI $t2, $t3, #32767
+SLTI $s0, $s1, #-32768
+SLTI $s2, $s3, #32767
+ANDI $t4, $t5, #0x0000
+ANDI $t6, $t7, #0xFFFF
+ORI  $s4, $s5, #0xFFFF
+LUI  $s6, #0xFFFF
+
+# Edge Case: Register Boundaries
+ADD $ra, $ra, $ra
+SUB $zero, $zero, $zero
+MULT $t9, $t9
+DIV $s7, $s7
+
+# Edge Case: Memory Offsets
+LW $t0, #-32768($t1)
+LW $t2, #32767($t3)
+SW $t4, #-32768($t5)
+SW $t6, #32767($t7)
+
+# Rare Format Instructions
+MFHI $s0
+MFLO $s1
+MULT $s2, $s3
+DIV $s4, $s5
+
+# Rare Logical Patterns
+AND $t0, $t0, $zero
+OR  $t1, $zero, $t1
