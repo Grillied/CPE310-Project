@@ -36,10 +36,9 @@ void mfhi_reg_assm(void) {
 	setBits_num(15, PARAM1.value, 5);
 
 	// Set the funct 
-	setBits_str(5, "010010");
+	setBits_str(5, "010000");
 	// set 25-16 as 0s 
-	setBits_str(21, "000000");
-	setBits_str(25, "000000");
+	setBits_str(25, "000000000000");
 	// set 10-6 as 0s 
 	setBits_str(10, "00000");
 
@@ -52,7 +51,7 @@ void mfhi_reg_bin(void) {
 	// check_bits(start_bit, bit_string) returns 0 if the bit_string matches
 	//  any x will be skipped
 	// If the manual shows (0), then the value of that bit doesnt matter
-	if (checkBits(31, "000000") != 0 || checkBits(5, "010010") != 0 || checkBits(25, "0000000000") != 0 || checkBits(10, "00000") != 0) {
+	if (checkBits(31, "000000") != 0 || checkBits(5, "010000") != 0 || checkBits(25, "0000000000") != 0 || checkBits(10, "00000") != 0) {//fixed the second bit of the if statment to the op code for mfhi not mflo
 		state = WRONG_COMMAND;
 		return;
 	}
