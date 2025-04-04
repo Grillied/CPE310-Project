@@ -1,4 +1,4 @@
-#include "../include/MIPS_Instruction.h"
+#include "MIPS_Translatron_3000/include/MIPS_Instruction.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -29,7 +29,7 @@ void getDisassembled(char* output) {
     fclose(temp);
 }
 
-int main() {
+int run_test() {
     FILE* file = fopen(TEST_FILE, "r");
     FILE* log = fopen(LOG_FILE, "w");
     if (!file || !log) {
