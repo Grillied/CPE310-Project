@@ -1,3 +1,9 @@
+
+/*
+* Evan's Fixes:
+* 1. Fixed the values for the bit set for Rd, Rs, and Rt
+*/
+
 #include "../include/Instruction.h"
 
 void and_reg_assm(void) {
@@ -72,10 +78,10 @@ void and_reg_assm(void) {
 	setBits_str(5, "100100");
 
 	// set Rd
-	setBits_num(15, PARAM1.value, 5);
+	setBits_num(15, PARAM1.value, 5); // Changed from 25 to 15
 
 	// set Rs
-	setBits_num(25, PARAM2.value, 5);
+	setBits_num(25, PARAM2.value, 5); // Changed from 15 to 25
 
 	// set Rt
 	setBits_num(20, PARAM3.value, 5);

@@ -1,6 +1,6 @@
 /*
-* William's Fixes 04/3/25
-* Added clarifing comments
+* William's Fixes:
+* 1. Added several more clarifying comments
 */
 
 #include "../include/Instruction.h"

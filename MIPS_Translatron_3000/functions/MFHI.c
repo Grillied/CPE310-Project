@@ -1,3 +1,10 @@
+/*
+* Jeremiah's Fixes:
+* 1. Corrected funct field in encoding
+* 2. Fixed the zeroes set for bits 25-16
+* 3. Corrected the funct field when checking bits in decoding
+*/
+
 #include "../include/Instruction.h"
 
 void mfhi_reg_assm(void) {
@@ -30,15 +37,19 @@ void mfhi_reg_assm(void) {
 	/*
 	Putting the binary together
 	*/
+
 	// Set the opcode
 	setBits_str(31, "000000");
+
 	// set rd
 	setBits_num(15, PARAM1.value, 5);
 
 	// Set the funct 
-	setBits_str(5, "010000");
+	setBits_str(5, "010000"); // Correct the funct to be for MFHI
+
 	// set 25-16 as 0s 
-	setBits_str(25, "000000000000");
+	setBits_str(25, "000000000000"); // Fix to set zeroes correctly for 25-16
+
 	// set 10-6 as 0s 
 	setBits_str(10, "00000");
 
@@ -51,7 +62,9 @@ void mfhi_reg_bin(void) {
 	// check_bits(start_bit, bit_string) returns 0 if the bit_string matches
 	//  any x will be skipped
 	// If the manual shows (0), then the value of that bit doesnt matter
-	if (checkBits(31, "000000") != 0 || checkBits(5, "010000") != 0 || checkBits(25, "0000000000") != 0 || checkBits(10, "00000") != 0) {//fixed the second bit of the if statment to the op code for mfhi not mflo
+
+	// Fixed the second bit of the if statment to the funct code for MFHI not MFLO
+	if (checkBits(31, "000000") != 0 || checkBits(5, "010000") != 0 || checkBits(25, "0000000000") != 0 || checkBits(10, "00000") != 0) {
 		state = WRONG_COMMAND;
 		return;
 	}
@@ -64,16 +77,15 @@ void mfhi_reg_bin(void) {
 
 	// getBits(start_bit, width)
 	uint32_t Rd = getBits(15, 5);
+
 	/*
 		Setting Instuciton values
 	*/
+
 	setOp("MFHI");
 	//setParam(param_num, param_type, param_value)
 	setParam(1, REGISTER, Rd); //destination
 
-
 	// tell the system the decoding is done
 	state = COMPLETE_DECODE;
 }
-
-

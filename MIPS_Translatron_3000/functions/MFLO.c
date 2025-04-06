@@ -1,3 +1,10 @@
+/*
+* Jeremiah's Fixes:
+* 1. Added correct number of padding zeroes for bits 25-16
+* 2. Included setting the funct field 
+* 3. Corrected the funct field when checking bits in decoding
+*/
+
 #include "../include/Instruction.h"
 
 void mflo_reg_assm(void) {
@@ -37,13 +44,13 @@ void mflo_reg_assm(void) {
 	setBits_num(15, PARAM1.value, 5);
 
 	// set 25-16 as 0s 
-	setBits_str(25, "0000000000");//Fix here added extra padding 0's
+	setBits_str(25, "0000000000"); // Fix: added extra padding 0's
 
 	// set 10-6 as 0s 
 	setBits_str(10, "00000");
 
 	// Set the funct for MFLO
-	setBits_str(5, "010010");//fixed here
+	setBits_str(5, "010010"); // Fixed/added here
 
 	// tell the system the encoding is done
 	state = COMPLETE_ENCODE;
@@ -54,7 +61,9 @@ void mflo_reg_bin(void) {
 	// check_bits(start_bit, bit_string) returns 0 if the bit_string matches
 	//  any x will be skipped
 	// If the manual shows (0), then the value of that bit doesnt matter
-	if (checkBits(31, "000000") != 0 || checkBits(5, "010010") != 0 || checkBits(25, "0000000000") != 0 || checkBits(10, "00000") != 0) { //Fix in the second condition from 010000 to 010010 for MFLO
+
+	// Fix in the second condition from 010000 to 010010 for MFLO
+	if (checkBits(31, "000000") != 0 || checkBits(5, "010010") != 0 || checkBits(25, "0000000000") != 0 || checkBits(10, "00000") != 0) { 
 		state = WRONG_COMMAND;
 		return;
 	}

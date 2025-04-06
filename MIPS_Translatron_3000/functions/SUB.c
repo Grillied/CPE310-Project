@@ -5,6 +5,11 @@
 * MIPS-Translatron 3000
 */
 
+/*
+* Jeremiah's Fixes:
+* 1. Corrected opcode to check for in decoding
+*/
+
 #include "../include/Instruction.h"
 
 void sub_reg_assm(void) {
@@ -92,7 +97,7 @@ void sub_reg_bin(void) {
 	// any x will be skipped
 	// If the manual shows (0), then the value of that bit doesnt matter
 
-	//Fix changed '100100' AND's code for '0100010' SUB's code 
+	// Fix: changed '100100' AND's code for '100010' SUB's code 
 	if (checkBits(31, "000000") != 0 || checkBits(5, "100010") != 0 ) {		
 		state = WRONG_COMMAND;
 		return;

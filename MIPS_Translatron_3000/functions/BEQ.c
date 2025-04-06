@@ -10,7 +10,7 @@
 * 1. Organized code for better readability
 * 2. Removed redundant code and comments
 * 3. Set the correct bits for Rt and Rs
-* 4. Corrected the opcdode when checking the bits
+* 4. Corrected the opcdode when checking the bits in decoding
 */
 
 
