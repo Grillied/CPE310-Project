@@ -25,8 +25,8 @@ OR $t3, $t4, $t5
 ORI $t6, $t7, #0x1234
 
 # Branching
-BEQ $t8, $t9, label
-BNE $s0, $s1, label
+BEQ $t8, $t9
+BNE $s0, $s1
 
 # Edge Case: Immediate Limits
 ADDI $t0, $t1, #-32768
