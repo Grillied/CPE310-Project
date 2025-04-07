@@ -8,9 +8,7 @@
 /*
 * William's Fixes:
 * 1. Added clarifying comments
-* 2. Fixed invalid immediate for second parameter in encoding
-# 3. Corrected bits set for all parameters in encoding
-* 3. Corrected how parameters were set in decoding
+* 2. Corrected how parameters were set in decoding
 */
 
 #include "../include/Instruction.h"
@@ -75,16 +73,15 @@ void sw_immd_assm(void) {
 	// corrected setbit values 
 
 	// Opcode set in first six bits from left
-	setBits_str(31, "101011"); // Changed to correct opcode for SW
+	setBits_str(31, "101011");
 
     // destination register set in 5 bits after source 
-	setBits_num(20, PARAM1.value, 5); // Changed from 15 to 20
+	setBits_num(20, PARAM1.value, 5);
 
 	// offset set in last 16 bits
-	setBits_num(15, PARAM2.value, 16); // Changed from 25 to 15
-
+	setBits_num(15, PARAM2.value, 16); 
 	// source register set in 5 bits after opcode 
-	setBits_num(25, PARAM3.value, 5); // Changed from 20 to 25
+	setBits_num(25, PARAM3.value, 5); 
 
 	// Tell the system the encoding is done
 	state = COMPLETE_ENCODE;
