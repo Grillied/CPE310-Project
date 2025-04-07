@@ -16,12 +16,8 @@ PASS: AND $s6, $s7, $t0
 PASS: ANDI $t1, $t2, #0xFFFF
 PASS: OR $t3, $t4, $t5
 PASS: ORI $t6, $t7, #0x1234
-FAIL: BEQ $t8, $t9, label
- - Encoding failed. Error code: 9
-
-FAIL: BNE $s0, $s1, label
- - Encoding failed. Error code: 9
-
+PASS: BEQ $t8, $t9, #100
+PASS: BNE $s0, $s1, #101
 PASS: ADDI $t0, $t1, #-32768
 PASS: ADDI $t2, $t3, #32767
 PASS: SLTI $s0, $s1, #-32768
@@ -49,4 +45,4 @@ PASS: DIV $s4, $s5
 PASS: AND $t0, $t0, $zero
 PASS: OR  $t1, $zero, $t1
 
-Test Summary: 35 passed / 40 total
+Test Summary: 37 passed / 40 total
