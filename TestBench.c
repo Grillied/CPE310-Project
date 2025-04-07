@@ -14,6 +14,43 @@ void strip_newline(char* str) {
     }
 }
 
+int hex_to_dec(const char *hex) {
+    return (int)strtol(hex, NULL, 16);
+}
+
+// Function to find and normalize immediate values in the instruction string
+void normalize_immediates(const char *instr, char *normalized) {
+    const char *hex_prefix = "0x";
+    char buffer[MAX_LINE];
+    char *token, *start;
+    int value;
+
+    strcpy(buffer, instr);  // Copy the input to a mutable buffer
+    token = strtok(buffer, " ,()");
+
+    while (token != NULL) {
+        start = strstr(token, hex_prefix);
+        if (start) {
+            // Convert hexadecimal to decimal
+            value = (int)strtol(start + 2, NULL, 16);
+            sprintf(start, "#%d", value);
+        }
+        token = strtok(NULL, " ,()");
+    }
+    strcpy(normalized, buffer);
+}
+
+
+int compare_instructions(const char *line, const char *disassembled) {
+    char normalized_line[MAX_LINE];
+    char normalized_disassembled[MAX_LINE];
+
+    normalize_immediates(line, normalized_line);
+    normalize_immediates(disassembled, normalized_disassembled);
+
+    return strcasecmp(normalized_line, normalized_disassembled);
+}
+
 // Capture disassembled instruction into a string instead of stdout
 void getDisassembled(char* output) {
     freopen("tmp_disassm.txt", "w", stdout);
@@ -75,7 +112,7 @@ int run_test() {
         getDisassembled(disassembled);
 
         // Compare original to disassembled (case-insensitive)
-        if (strcasecmp(line, disassembled) == 0) {
+        if (compare_instructions(line, disassembled) == 0) {
             fprintf(log, "PASS: %s\n", line);
             passed++;
         } else {

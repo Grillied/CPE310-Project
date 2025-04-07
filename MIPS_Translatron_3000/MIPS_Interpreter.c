@@ -1,4 +1,5 @@
 #include "include/MIPS_Interpreter.h"
+#include "include/TestBench.h"
 
 int main(void) {
 	// inializes everything
@@ -46,11 +47,15 @@ int main(void) {
 	Return: none
 */
 void test(void) {
-	char* buff = "AND $t1, $t2, $t3";
-	printf("%s\n", buff);
-	parseAssem(buff);
-	printResult();
-	printAssm();
+	// char* buff = "AND $t1, $t2, $t3";
+	// printf("%s\n", buff);
+	// parseAssem(buff);
+	// printResult();
+	// printAssm();
+
+
+
+	run_test();
 }
 
 /*

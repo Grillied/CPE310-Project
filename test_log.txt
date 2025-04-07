@@ -1,0 +1,52 @@
+PASS: ADD $t0, $t1, $t2
+PASS: ADDI $t3, $t4, #32767
+PASS: SUB $t5, $t6, $t7
+PASS: LW $t0, #100($t1)
+FAIL: SW $t2, #-100($t3)
+ - Encoding failed. Error code: 6
+
+PASS: LUI $t4, #0xABCD
+PASS: MULT $t5, $t6
+PASS: DIV $t7, $t8
+PASS: MFLO $t9
+PASS: MFHI $s0
+PASS: SLT $s1, $s2, $s3
+PASS: SLTI $s4, $s5, #-32768
+PASS: AND $s6, $s7, $t0
+PASS: ANDI $t1, $t2, #0xFFFF
+PASS: OR $t3, $t4, $t5
+PASS: ORI $t6, $t7, #0x1234
+FAIL: BEQ $t8, $t9, label
+ - Encoding failed. Error code: 9
+
+FAIL: BNE $s0, $s1, label
+ - Encoding failed. Error code: 9
+
+PASS: ADDI $t0, $t1, #-32768
+PASS: ADDI $t2, $t3, #32767
+PASS: SLTI $s0, $s1, #-32768
+PASS: SLTI $s2, $s3, #32767
+PASS: ANDI $t4, $t5, #0x0000
+PASS: ANDI $t6, $t7, #0xFFFF
+PASS: ORI  $s4, $s5, #0xFFFF
+PASS: LUI  $s6, #0xFFFF
+PASS: ADD $ra, $ra, $ra
+PASS: SUB $zero, $zero, $zero
+PASS: MULT $t9, $t9
+PASS: DIV $s7, $s7
+FAIL: LW $t0, #-32768($t1)
+ - Encoding failed. Error code: 6
+
+PASS: LW $t2, #32767($t3)
+FAIL: SW $t4, #-32768($t5)
+ - Encoding failed. Error code: 6
+
+PASS: SW $t6, #32767($t7)
+PASS: MFHI $s0
+PASS: MFLO $s1
+PASS: MULT $s2, $s3
+PASS: DIV $s4, $s5
+PASS: AND $t0, $t0, $zero
+PASS: OR  $t1, $zero, $t1
+
+Test Summary: 35 passed / 40 total

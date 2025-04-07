@@ -7,7 +7,8 @@ cc = gcc
 SRCS_TOP    = $(wildcard *.c)
 SRCS_FUNCS  = $(wildcard MIPS_Translatron_3000/functions/*.c)
 SRCS_UTIL   = $(wildcard MIPS_Translatron_3000/*.c) 
-SRCS        = $(SRCS_TOP) $(SRCS_FUNCS) $(SRCS_UTIL)
+SRS_TEST 	= $(wildcard *.c)
+SRCS        = $(SRCS_TOP) $(SRCS_FUNCS) $(SRCS_UTIL) $(SRS_TEST)
 OBJDIR = build
 OBJS = $(patsubst %.c,$(OBJDIR)/%.o,$(SRCS))
 
