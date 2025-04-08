@@ -56,11 +56,22 @@ void getDisassembled(char* output) {
     freopen("tmp_disassm.txt", "w", stdout);
     printAssm();
     fflush(stdout);
-
-    // Restore stdout
     freopen("/dev/tty", "a", stdout);
 
     FILE* temp = fopen("tmp_disassm.txt", "r");
+    fgets(output, MAX_LINE, temp);
+    strip_newline(output);
+    fclose(temp);
+}
+
+// Capture machine code into a string
+void getMachineCode(char* output) {
+    freopen("tmp_machine.txt", "w", stdout);
+    printMachine();
+    fflush(stdout);
+    freopen("/dev/tty", "a", stdout);
+
+    FILE* temp = fopen("tmp_machine.txt", "r");
     fgets(output, MAX_LINE, temp);
     strip_newline(output);
     fclose(temp);
@@ -80,7 +91,6 @@ int run_test() {
     while (fgets(line, sizeof(line), file)) {
         strip_newline(line);
 
-        // Skip blank or comment lines
         if (strlen(line) == 0 || line[0] == '#') continue;
 
         total++;
@@ -98,7 +108,7 @@ int run_test() {
         uint32_t original_bin = BIN32;
 
         // Decode
-        parseBin(NULL); // Reset internal state
+        parseBin(NULL);
         BIN32 = original_bin;
         decode();
 
@@ -107,20 +117,22 @@ int run_test() {
             continue;
         }
 
-        // Capture disassembled string
+        // Get machine code and disassembled output
+        char machine_code[MAX_LINE];
         char disassembled[MAX_LINE];
+        getMachineCode(machine_code);
         getDisassembled(disassembled);
 
-        // Compare original to disassembled (case-insensitive)
+        // Compare
         if (compare_instructions(line, disassembled) == 0) {
-            fprintf(log, "PASS: %s\n", line);
+            fprintf(log, "Instruction: %s\n%s\nDisassembled: %s\n\n", line, machine_code, disassembled);
             passed++;
         } else {
-            fprintf(log, "FAIL: %s\n - Got: %s\n\n", line, disassembled);
+            fprintf(log, "Fail! Instruction: %s\n%s\nDisassembled: %s\n\n", line, machine_code, disassembled);
         }
     }
 
-    fprintf(log, "\nTest Summary: %d passed / %d total\n", passed, total);
+    fprintf(log, "Test Summary: %d passed / %d total\n", passed, total);
     printf("Testing complete! Results written to %s\n", LOG_FILE);
 
     fclose(file);

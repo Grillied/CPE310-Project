@@ -1,48 +1,133 @@
-PASS: ADD $t0, $t1, $t2
-PASS: ADDI $t3, $t4, #32767
-PASS: SUB $t5, $t6, $t7
-PASS: LW $t0, #100($t1)
-FAIL: SW $t2, #-100($t3)
- - Encoding failed. Error code: 6
+Instruction: ADD $t0, $t1, $t2
+Hex: 0x012A4020	Binary:0000 0001 0010 1010 0100 0000 0010 0000 
+Disassembled: ADD $t0, $t1, $t2
 
-PASS: LUI $t4, #0xABCD
-PASS: MULT $t5, $t6
-PASS: DIV $t7, $t8
-PASS: MFLO $t9
-PASS: MFHI $s0
-PASS: SLT $s1, $s2, $s3
-PASS: SLTI $s4, $s5, #-32768
-PASS: AND $s6, $s7, $t0
-PASS: ANDI $t1, $t2, #0xFFFF
-PASS: OR $t3, $t4, $t5
-PASS: ORI $t6, $t7, #0x1234
-PASS: BEQ $t8, $t9, #100
-PASS: BNE $s0, $s1, #101
-PASS: ADDI $t0, $t1, #-32768
-PASS: ADDI $t2, $t3, #32767
-PASS: SLTI $s0, $s1, #-32768
-PASS: SLTI $s2, $s3, #32767
-PASS: ANDI $t4, $t5, #0x0000
-PASS: ANDI $t6, $t7, #0xFFFF
-PASS: ORI  $s4, $s5, #0xFFFF
-PASS: LUI  $s6, #0xFFFF
-PASS: ADD $ra, $ra, $ra
-PASS: SUB $zero, $zero, $zero
-PASS: MULT $t9, $t9
-PASS: DIV $s7, $s7
-FAIL: LW $t0, #-32768($t1)
- - Encoding failed. Error code: 6
+Instruction: ADDI $t3, $t4, #0x7FFF
+Hex: 0x218B7FFF	Binary:0010 0001 1000 1011 0111 1111 1111 1111 
+Disassembled: ADDI $t3, $t4, #0x7FFF
 
-PASS: LW $t2, #32767($t3)
-FAIL: SW $t4, #-32768($t5)
- - Encoding failed. Error code: 6
+Instruction: SUB $t5, $t6, $t7
+Hex: 0x01CF6822	Binary:0000 0001 1100 1111 0110 1000 0010 0010 
+Disassembled: SUB $t5, $t6, $t7
 
-PASS: SW $t6, #32767($t7)
-PASS: MFHI $s0
-PASS: MFLO $s1
-PASS: MULT $s2, $s3
-PASS: DIV $s4, $s5
-PASS: AND $t0, $t0, $zero
-PASS: OR  $t1, $zero, $t1
+Instruction: LW $t0, #0x64($t1)
+Hex: 0x8D280064	Binary:1000 1101 0010 1000 0000 0000 0110 0100 
+Disassembled: LW $t0, #0x64($t1)
 
-Test Summary: 37 passed / 40 total
+Instruction: SW $t2, #0x66($t3)
+Hex: 0xAD6A0066	Binary:1010 1101 0110 1010 0000 0000 0110 0110 
+Disassembled: SW $t2, #0x66($t3)
+
+Instruction: LUI $t4, #0xABCD
+Hex: 0x3C0CABCD	Binary:0011 1100 0000 1100 1010 1011 1100 1101 
+Disassembled: LUI $t4, #0xABCD
+
+Instruction: MULT $t5, $t6
+Hex: 0x01AE0018	Binary:0000 0001 1010 1110 0000 0000 0001 1000 
+Disassembled: MULT $t5, $t6
+
+Instruction: DIV $t7, $t8
+Hex: 0x01F8001A	Binary:0000 0001 1111 1000 0000 0000 0001 1010 
+Disassembled: DIV $t7, $t8
+
+Instruction: MFLO $t9
+Hex: 0x0000C812	Binary:0000 0000 0000 0000 1100 1000 0001 0010 
+Disassembled: MFLO $t9
+
+Instruction: MFHI $s0
+Hex: 0x00008010	Binary:0000 0000 0000 0000 1000 0000 0001 0000 
+Disassembled: MFHI $s0
+
+Instruction: SLT $s1, $s2, $s3
+Hex: 0x0253882A	Binary:0000 0010 0101 0011 1000 1000 0010 1010 
+Disassembled: SLT $s1, $s2, $s3
+
+Instruction: SLTI $s4, $s5, #0x2CD
+Hex: 0x2AB402CD	Binary:0010 1010 1011 0100 0000 0010 1100 1101 
+Disassembled: SLTI $s4, $s5, #0x2CD
+
+Instruction: AND $s6, $s7, $t0
+Hex: 0x02E8B024	Binary:0000 0010 1110 1000 1011 0000 0010 0100 
+Disassembled: AND $s6, $s7, $t0
+
+Instruction: ANDI $t1, $t2, #0xFFFF
+Hex: 0x3149FFFF	Binary:0011 0001 0100 1001 1111 1111 1111 1111 
+Disassembled: ANDI $t1, $t2, #0xFFFF
+
+Instruction: OR $t3, $t4, $t5
+Hex: 0x018D5825	Binary:0000 0001 1000 1101 0101 1000 0010 0101 
+Disassembled: OR $t3, $t4, $t5
+
+Instruction: ORI $t6, $t7, #0x1234
+Hex: 0x35EE1234	Binary:0011 0101 1110 1110 0001 0010 0011 0100 
+Disassembled: ORI $t6, $t7, #0x1234
+
+Instruction: BEQ $t8, $t9, #0x64
+Hex: 0x13190064	Binary:0001 0011 0001 1001 0000 0000 0110 0100 
+Disassembled: BEQ $t8, $t9, #0x64
+
+Instruction: BNE $s0, $s1, #0x65
+Hex: 0x16300065	Binary:0001 0110 0011 0000 0000 0000 0110 0101 
+Disassembled: BNE $s0, $s1, #0x65
+
+Instruction: ADDI $t0, $t1, #0xFFFF
+Hex: 0x2128FFFF	Binary:0010 0001 0010 1000 1111 1111 1111 1111 
+Disassembled: ADDI $t0, $t1, #0xFFFF
+
+Instruction: SLTI $s0, $s1, #0xFFFF
+Hex: 0x2A30FFFF	Binary:0010 1010 0011 0000 1111 1111 1111 1111 
+Disassembled: SLTI $s0, $s1, #0xFFFF
+
+Instruction: ANDI $t6, $t7, #0xFFFF
+Hex: 0x31EEFFFF	Binary:0011 0001 1110 1110 1111 1111 1111 1111 
+Disassembled: ANDI $t6, $t7, #0xFFFF
+
+Instruction: ORI  $s4, $s5, #0xFFFF
+Hex: 0x36B4FFFF	Binary:0011 0110 1011 0100 1111 1111 1111 1111 
+Disassembled: ORI $s4, $s5, #0xFFFF
+
+Instruction: LUI  $s6, #0xFFFF
+Hex: 0x3C16FFFF	Binary:0011 1100 0001 0110 1111 1111 1111 1111 
+Disassembled: LUI $s6, #0xFFFF
+
+Instruction: ADD $ra, $ra, $ra
+Hex: 0x03FFF820	Binary:0000 0011 1111 1111 1111 1000 0010 0000 
+Disassembled: ADD $ra, $ra, $ra
+
+Instruction: SUB $zero, $zero, $zero
+Hex: 0x00000022	Binary:0000 0000 0000 0000 0000 0000 0010 0010 
+Disassembled: SUB $zero, $zero, $zero
+
+Instruction: MULT $t9, $t9
+Hex: 0x03390018	Binary:0000 0011 0011 1001 0000 0000 0001 1000 
+Disassembled: MULT $t9, $t9
+
+Instruction: DIV $s7, $s7
+Hex: 0x02F7001A	Binary:0000 0010 1111 0111 0000 0000 0001 1010 
+Disassembled: DIV $s7, $s7
+
+Instruction: MFHI $s0
+Hex: 0x00008010	Binary:0000 0000 0000 0000 1000 0000 0001 0000 
+Disassembled: MFHI $s0
+
+Instruction: MFLO $s1
+Hex: 0x00008812	Binary:0000 0000 0000 0000 1000 1000 0001 0010 
+Disassembled: MFLO $s1
+
+Instruction: MULT $s2, $s3
+Hex: 0x02530018	Binary:0000 0010 0101 0011 0000 0000 0001 1000 
+Disassembled: MULT $s2, $s3
+
+Instruction: DIV $s4, $s5
+Hex: 0x0295001A	Binary:0000 0010 1001 0101 0000 0000 0001 1010 
+Disassembled: DIV $s4, $s5
+
+Instruction: AND $t0, $t0, $zero
+Hex: 0x01004024	Binary:0000 0001 0000 0000 0100 0000 0010 0100 
+Disassembled: AND $t0, $t0, $zero
+
+Instruction: OR  $t1, $zero, $t1
+Hex: 0x00094825	Binary:0000 0000 0000 1001 0100 1000 0010 0101 
+Disassembled: OR $t1, $zero, $t1
+
+Test Summary: 33 passed / 33 total

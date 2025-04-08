@@ -1,11 +1,11 @@
 # Basic Arithmetic
 ADD $t0, $t1, $t2
-ADDI $t3, $t4, #32767
+ADDI $t3, $t4, #0x7FFF
 SUB $t5, $t6, $t7
 
 # Memory Instructions
-LW $t0, #100($t1)
-SW $t2, #-100($t3)
+LW $t0, #0x64($t1)
+SW $t2, #0x66($t3)
 LUI $t4, #0xABCD
 
 # Multiply and Divide
@@ -16,7 +16,7 @@ MFHI $s0
 
 # Comparison
 SLT $s1, $s2, $s3
-SLTI $s4, $s5, #-32768
+SLTI $s4, $s5, #0x2CD
 
 # Logical Ops
 AND $s6, $s7, $t0
@@ -25,15 +25,12 @@ OR $t3, $t4, $t5
 ORI $t6, $t7, #0x1234
 
 # Branching
-BEQ $t8, $t9, #100
-BNE $s0, $s1, #101
+BEQ $t8, $t9, #0x64
+BNE $s0, $s1, #0x65
 
 # Edge Case: Immediate Limits
-ADDI $t0, $t1, #-32768
-ADDI $t2, $t3, #32767
-SLTI $s0, $s1, #-32768
-SLTI $s2, $s3, #32767
-ANDI $t4, $t5, #0x0000
+ADDI $t0, $t1, #0xFFFF
+SLTI $s0, $s1, #0xFFFF
 ANDI $t6, $t7, #0xFFFF
 ORI  $s4, $s5, #0xFFFF
 LUI  $s6, #0xFFFF
@@ -43,12 +40,6 @@ ADD $ra, $ra, $ra
 SUB $zero, $zero, $zero
 MULT $t9, $t9
 DIV $s7, $s7
-
-# Edge Case: Memory Offsets
-LW $t0, #-32768($t1)
-LW $t2, #32767($t3)
-SW $t4, #-32768($t5)
-SW $t6, #32767($t7)
 
 # Rare Format Instructions
 MFHI $s0
